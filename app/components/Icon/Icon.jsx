@@ -18,6 +18,7 @@ let icons = [
     "users",
     "wand",
     "b-logo",
+    "pc",
     "accounts",
     "witnesses",
     "assets",
