@@ -2,5 +2,5 @@
 git checkout staging
 git pull upstream staging
 git rebase upstream/staging
-git pull origin staging
+git commit -am "merge with upstream"
 git push origin staging
