@@ -64,7 +64,8 @@ let icons = [
     "hourglass",
     "news",
     "hamburger",
-    "hamburger-x"
+    "hamburger-x",
+    "link"
 ];
 
 let icons_map = {};
