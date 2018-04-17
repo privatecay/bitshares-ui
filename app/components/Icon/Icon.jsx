@@ -4,25 +4,6 @@ import React from "react";
 import counterpart from "counterpart";
 
 let icons = [
-<<<<<<< HEAD
-    "user",
-    "trash",
-    "chevron-down",
-    "menu",
-    "database",
-    "download",
-    "search",
-    "plus-circle",
-    "question-circle",
-    "cross-circle",
-    "cog",
-    "layers",
-    "users",
-    "wand",
-    "b-logo",
-    "pc",
-=======
->>>>>>> 83082773e54e260813f8604b9b6b47e23f9da86c
     "accounts",
     "adjust",
     "assets",
