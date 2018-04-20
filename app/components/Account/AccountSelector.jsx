@@ -57,7 +57,7 @@ class AccountSelector extends React.Component {
         if (typeof account === "undefined")
             account = ChainStore.getAccount(accountName);
 
-        if (this.props.onAccountChanged && account) 
+        if (this.props.onAccountChanged && account)
             this.props.onAccountChanged(account);
 
         if (!this.props.typeahead && !!accountName)
@@ -96,19 +96,18 @@ class AccountSelector extends React.Component {
     }
 
     onSelected(e) {
-        this.setState({ inputChanged: false });
+        this.setState({inputChanged: false});
         let _accountName = this.getVerifiedAccountName(e);
         let _account = ChainStore.getAccount(_accountName);
         if (_account) {
             this.props.onChange(_accountName);
             this.props.onAccountChanged(_account);
         }
-        
     }
 
     onInputChanged(e) {
         let {onChange, onAccountChanged, accountName, typeahead} = this.props;
-        this.setState({ inputChanged: true });
+        this.setState({inputChanged: true});
 
         let _accountName = this.getVerifiedAccountName(e);
         let _account = ChainStore.getAccount(_accountName);
@@ -129,7 +128,7 @@ class AccountSelector extends React.Component {
         let value = null;
         if (typeof e === "string") {
             value = e;
-        } else if(e && e.target) {
+        } else if (e && e.target) {
             value = e.target.value.trim();
         } else {
             value = "";
@@ -191,11 +190,11 @@ class AccountSelector extends React.Component {
             );
             account.accountType = this.getNameType(account.get("name"));
             account.accountStatus = ChainStore.getAccountMemberStatus(account);
-            account.statusText = !account.isKnownScammer ?
-                counterpart.translate(
-                    "account.member." + account.accountStatus
-                ) : 
-                counterpart.translate("account.member.suspected_scammer");
+            account.statusText = !account.isKnownScammer
+                ? counterpart.translate(
+                      "account.member." + account.accountStatus
+                  )
+                : counterpart.translate("account.member.suspected_scammer");
             account.displayText =
                 account.accountType === "name"
                     ? "#" + account.get("id").substring(4)
@@ -214,10 +213,12 @@ class AccountSelector extends React.Component {
         }
 
         if (account && linkedAccounts)
-            account.isFavorite = myActiveAccounts.has(account.get("name")) || contacts.has(account.get("name"));
+            account.isFavorite =
+                myActiveAccounts.has(account.get("name")) ||
+                contacts.has(account.get("name"));
 
         if (typeahead && linkedAccounts) {
-            linkedAccounts.map(function(accountName) {  
+            linkedAccounts.map(function(accountName) {
                 let account = ChainStore.getAccount(accountName);
                 let account_status = ChainStore.getAccountMemberStatus(account);
                 let account_status_text = !accountUtils.isKnownScammer(
@@ -237,11 +238,11 @@ class AccountSelector extends React.Component {
             });
         }
 
-        let typeaheadHasAccount = !!accountName ? 
-            typeAheadAccounts.reduce((boolean, a) => {
-                return boolean || a.label === accountName;
-            }, false) :
-            false;
+        let typeaheadHasAccount = !!accountName
+            ? typeAheadAccounts.reduce((boolean, a) => {
+                  return boolean || a.label === accountName;
+              }, false)
+            : false;
 
         if (!!accountName && !typeaheadHasAccount && this.state.inputChanged) {
             let _account = ChainStore.getAccount(accountName);

@@ -594,14 +594,14 @@ class AccountAssetUpdate extends React.Component {
             );
         }
 
-        if(this.state.marketInput == this.props.asset.get("symbol")) {
+        if (this.state.marketInput == this.props.asset.get("symbol")) {
             errors.invalid_market_pair = counterpart.translate(
                 "account.user_issued_assets.invalid_market_pair"
             );
         }
 
         let isValid =
-            !errors.invalid_market_pair && 
+            !errors.invalid_market_pair &&
             !errors.max_supply &&
             !errors.base_asset &&
             !errors.quote_asset &&
@@ -973,7 +973,9 @@ class AccountAssetUpdate extends React.Component {
             "is_prediction_market"
         ]);
 
-        let asset_description = assetUtils.parseDescription(this.props.asset.toJS().options.description);
+        let asset_description = assetUtils.parseDescription(
+            this.props.asset.toJS().options.description
+        );
 
         return (
             <div className="grid-content app-tables no-padding" ref="appTables">

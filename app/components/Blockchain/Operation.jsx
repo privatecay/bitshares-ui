@@ -147,9 +147,9 @@ class Row extends React.Component {
                 </td>
                 <td>
                     {!this.props.hideDate ? (
-                        <BlockTime 
-                            block_number={block} 
-                            fullDate={this.props.fullDate} 
+                        <BlockTime
+                            block_number={block}
+                            fullDate={this.props.fullDate}
                         />
                     ) : null}
                 </td>

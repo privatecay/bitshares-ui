@@ -122,7 +122,7 @@ class App extends React.Component {
         this.props.router.listen(this._rebuildTooltips);
 
         this._rebuildTooltips();
-        
+
         isIncognito(
             function(incognito) {
                 this.setState({incognito});

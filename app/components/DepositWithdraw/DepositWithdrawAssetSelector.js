@@ -32,7 +32,7 @@ class DepositWithdrawAssetSelector extends React.Component {
                 };
             } else {
                 return null;
-            } 
+            }
         };
 
         let coinArr = [];
@@ -40,28 +40,25 @@ class DepositWithdrawAssetSelector extends React.Component {
         if (!(this.props.includeBTS === false)) {
             coinArr.push({id: "BTS", label: "BTS", gateway: ""});
         }
-        
-        props.backedCoins.forEach((coin) => {
+
+        props.backedCoins.forEach(coin => {
             coinArr = coinArr
                 .concat(coin.map(getCoinOption))
                 .filter(item => {
                     return item;
                 })
                 .filter(item => {
-                    if(item.id == "BTS") return true;
-                    if(include) {
-                        return (
-                            include.includes(item.id)
-                        );
+                    if (item.id == "BTS") return true;
+                    if (include) {
+                        return include.includes(item.id);
                     }
                     return true;
                 });
         });
 
-        let coinItems = coinArr
-            .sort(function(a, b) {
-                if(a.id && b.id) return a.id.localeCompare(b.id);
-            });
+        let coinItems = coinArr.sort(function(a, b) {
+            if (a.id && b.id) return a.id.localeCompare(b.id);
+        });
 
         let i18n =
             props.usageContext == "withdraw"
@@ -86,7 +83,7 @@ export default connect(DepositWithdrawAssetSelector, {
     },
     getProps() {
         return {
-            backedCoins: GatewayStore.getState().backedCoins,
+            backedCoins: GatewayStore.getState().backedCoins
         };
     }
 });

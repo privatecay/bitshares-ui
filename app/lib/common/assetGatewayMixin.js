@@ -1,9 +1,7 @@
 import React from "react";
 import Translate from "react-translate-component";
 import Icon from "../../components/Icon/Icon";
-import {
-    getGatewayStatusByAsset
-} from "common/gatewayUtils";
+import {getGatewayStatusByAsset} from "common/gatewayUtils";
 
 function _getCoinToGatewayMapping(boolCheck = "depositAllowed") {
     let coinToGatewayMapping = {};
@@ -29,7 +27,11 @@ function _getCoinToGatewayMapping(boolCheck = "depositAllowed") {
 
 function _openGatewaySite() {
     let {selectedGateway, gatewayStatus} = this.state;
-    let win = window.open("https://wallet.bitshares.org/#/help/gateways/" + gatewayStatus[selectedGateway].name.toLowerCase().replace("-",""), "_blank");
+    let win = window.open(
+        "https://wallet.bitshares.org/#/help/gateways/" +
+            gatewayStatus[selectedGateway].name.toLowerCase().replace("-", ""),
+        "_blank"
+    );
     win.focus();
 }
 
@@ -151,9 +153,12 @@ function gatewaySelector(args) {
     } = args;
 
     let selectGatewayList = Object.keys(gatewayStatus).map((key, i) => {
-        if(gatewayStatus[key].options.enabled) 
+        if (gatewayStatus[key].options.enabled)
             return (
-                <option value={gatewayStatus[key].id} key={gatewayStatus[key].id}>
+                <option
+                    value={gatewayStatus[key].id}
+                    key={gatewayStatus[key].id}
+                >
                     {gatewayStatus[key].name}
                 </option>
             );
@@ -174,12 +179,12 @@ function gatewaySelector(args) {
                             </span>
                         ) : null}
                         <span className="floatRight error-msg">
-                            {!error && 
+                            {!error &&
                             selectedGateway &&
-                            gatewayStatus[selectedGateway] && 
-                            !gatewayStatus[selectedGateway].options.enabled ?
+                            gatewayStatus[selectedGateway] &&
+                            !gatewayStatus[selectedGateway].options.enabled ? (
                                 <Translate content="modal.deposit_withdraw.disabled" />
-                                : null}
+                            ) : null}
                             {error ? (
                                 <Translate content="modal.deposit_withdraw.wallet_error" />
                             ) : null}

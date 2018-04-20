@@ -7,7 +7,8 @@ import MarketHistory from "./MarketHistory";
 import MyMarkets from "./MyMarkets";
 import BuySell from "./BuySell";
 import utils from "common/utils";
-import PriceChartD3 from "./PriceChartD3";
+// import PriceChartD3 from "./PriceChartD3";
+import TradingViewPriceChart from "./TradingViewPriceChart";
 import assetUtils from "common/asset_utils";
 import DepthHighChart from "./DepthHighChart";
 import {debounce, cloneDeep} from "lodash";
@@ -371,9 +372,9 @@ class Exchange extends React.Component {
             });
         }
 
-        if (this.props.sub && nextProps.bucketSize !== this.props.bucketSize) {
-            return this._changeBucketSize(nextProps.bucketSize);
-        }
+        // if (this.props.sub && nextProps.bucketSize !== this.props.bucketSize) {
+        //     return this._changeBucketSize(nextProps.bucketSize);
+        // }
     }
 
     componentWillUnmount() {
@@ -776,18 +777,18 @@ class Exchange extends React.Component {
         );
     }
 
-    _changeBucketSize(size, e) {
-        if (e) e.preventDefault();
-        if (size !== this.props.bucketSize) {
-            MarketsActions.changeBucketSize(size);
-            let currentSub = this.props.sub.split("_");
-            MarketsActions.unSubscribeMarket(currentSub[0], currentSub[1]).then(
-                () => {
-                    this.props.subToMarket(this.props, size);
-                }
-            );
-        }
-    }
+    // _changeBucketSize(size, e) {
+    //     if (e) e.preventDefault();
+    //     if (size !== this.props.bucketSize) {
+    //         MarketsActions.changeBucketSize.defer(size);
+    //         let currentSub = this.props.sub.split("_");
+    //         MarketsActions.unSubscribeMarket(currentSub[0], currentSub[1]).then(
+    //             () => {
+    //                 this.props.subToMarket(this.props, size);
+    //             }
+    //         );
+    //     }
+    // }
 
     _changeZoomPeriod(size, e) {
         e.preventDefault();
@@ -1632,41 +1633,20 @@ class Exchange extends React.Component {
                                     id="market-charts"
                                 >
                                     {/* Price history chart */}
-                                    <PriceChartD3
-                                        priceData={this.props.priceData}
-                                        volumeData={this.props.volumeData}
-                                        base={base}
-                                        quote={quote}
+                                    <TradingViewPriceChart
+                                        locale={this.props.locale}
+                                        dataFeed={this.props.dataFeed}
                                         baseSymbol={baseSymbol}
                                         quoteSymbol={quoteSymbol}
                                         height={height}
                                         leftOrderBook={leftOrderBook}
                                         marketReady={marketReady}
-                                        indicators={indicators}
-                                        indicatorSettings={indicatorSettings}
-                                        latest={latestPrice}
                                         theme={this.props.settings.get(
                                             "themes"
                                         )}
-                                        zoom={this.state.currentPeriod}
-                                        tools={tools}
-                                        showVolumeChart={showVolumeChart}
-                                        enableChartClamp={enableChartClamp}
                                         buckets={buckets}
                                         bucketSize={bucketSize}
                                         currentPeriod={this.state.currentPeriod}
-                                        changeBucketSize={this._changeBucketSize.bind(
-                                            this
-                                        )}
-                                        changeZoomPeriod={this._changeZoomPeriod.bind(
-                                            this
-                                        )}
-                                        onSelectIndicators={this._onSelectIndicators.bind(
-                                            this
-                                        )}
-                                        onChangeIndicators={this._changeIndicator.bind(
-                                            this
-                                        )}
                                         onChangeTool={key => {
                                             let tools = cloneDeep(
                                                 this.state.tools
@@ -1691,19 +1671,6 @@ class Exchange extends React.Component {
                                             this
                                         )}
                                         chartHeight={chartHeight}
-                                        onToggleVolume={() => {
-                                            SettingsActions.changeViewSetting({
-                                                showVolumeChart: !showVolumeChart
-                                            });
-                                        }}
-                                        onToggleChartClamp={() => {
-                                            SettingsActions.changeViewSetting({
-                                                enableChartClamp: !enableChartClamp
-                                            });
-                                        }}
-                                        onChangeIndicatorSetting={this._changeIndicatorSetting.bind(
-                                            this
-                                        )}
                                     />
                                 </div>
                             ) : (
