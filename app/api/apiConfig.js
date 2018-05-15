@@ -46,7 +46,7 @@ export const gdex2APIs = {
     BASE: "https://api.gdex.io/adjust",
     COINS_LIST: "/coins",
     ACTIVE_WALLETS: "/active-wallets",
-    TRADING_PAIRS: "/trading-pairs"  
+    TRADING_PAIRS: "/trading-pairs"
 };
 
 // Legacy Deposit/Withdraw
@@ -112,8 +112,9 @@ export const settingsAPIs = {
         {url: "wss://ws.winex.pro", location: "Singapore"},
         {url: "wss://api.bts.mobi/ws", location: "VA, USA"},
         {
-            url: "wss://api.btsxchng.com", 
-            location: "Global (Asia Pacific (Singapore) / US East (N. Virginia) / EU (London))"
+            url: "wss://api.btsxchng.com",
+            location:
+                "Global (Asia Pacific (Singapore) / US East (N. Virginia) / EU (London))"
         },
         {url: "wss://api.bts.network", location: "East Coast, USA"},
         {url: "wss://btsws.roelandp.nl/ws", location: "Finland"},

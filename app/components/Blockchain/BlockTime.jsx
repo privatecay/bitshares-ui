@@ -60,15 +60,16 @@ class BlockTime extends React.Component {
     render() {
         return (
             <span className="time" key={this.props.block_number}>
-                {this.state.time ? 
-                    this.props.fullDate ? 
+                {this.state.time ? (
+                    this.props.fullDate ? (
                         counterpart.localize(new Date(this.state.time), {
                             type: "date",
                             format: "full"
-                        }) : 
-                        <TimeAgo time={this.state.time} /> 
-                    : null
-                }
+                        })
+                    ) : (
+                        <TimeAgo time={this.state.time} />
+                    )
+                ) : null}
             </span>
         );
     }
